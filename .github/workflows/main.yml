@@ -22,11 +22,11 @@ jobs:
       - name: Install Cordova
         run: npm install -g cordova
 
-      - name: Prepare and Build
+      - name: Create and Build
         run: |
           cordova create build_dir com.apnagame.eggdash "EggDash"
           cd build_dir
-          cordova platform add android@12.0.0
+          cordova platform add android@11.0.0
           rm -rf www/*
           cp ../index.html www/
           cp ../config.xml .
@@ -35,5 +35,5 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: EggDash-Final-APK
-          path: build_dir/platforms/android/app/build/outputs/apk/debug/app-debug.apk
+          name: EggDash-Ready-APK
+          path: build_dir/platforms/android/app/build/outputs/apk/debug/*.apk
