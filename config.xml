@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.apnagame.eggdash" version="1.0.0" xmlns="http://www.w3.org/ns/widgets">
+    <name>Egg Dash</name>
+    <description>Professional Scratch Game</description>
+    <author email="dev@yourteam.com">Aapka Naam</author>
+    <content src="index.html" />
+    <preference name="Orientation" value="landscape" />
+    <preference name="FullScreen" value="true" />
+    <plugin name="cordova-plugin-admob-plus" />
+</widget>
