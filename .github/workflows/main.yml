@@ -22,18 +22,18 @@ jobs:
       - name: Install Cordova
         run: npm install -g cordova
 
-      - name: Create Project and Build
+      - name: Build Clean APK
         run: |
           cordova create build_dir com.apnagame.eggdash "Egg Dash"
           cd build_dir
           cordova platform add android
           rm -rf www/*
           cp ../index.html www/
-          [ -f ../config.xml ] && cp ../config.xml . || echo "Using default config"
-          cordova build android --release --no-telemetry
+          cp ../config.xml .
+          cordova build android --no-telemetry
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: EggDash-Release-APK
-          path: build_dir/platforms/android/app/build/outputs/apk/release/*.apk
+          name: EggDash-APK
+          path: build_dir/platforms/android/app/build/outputs/apk/debug/app-debug.apk
