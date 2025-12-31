@@ -19,24 +19,21 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Accept Android Licenses
-        run: yes | sdkmanager --licenses || true
-
       - name: Install Cordova
         run: npm install -g cordova
 
-      - name: Build Clean APK
+      - name: Prepare and Build
         run: |
-          cordova create build_dir com.apnagame.eggdash "Egg Dash"
+          cordova create build_dir com.apnagame.eggdash "EggDash"
           cd build_dir
-          cordova platform add android
+          cordova platform add android@12.0.0
           rm -rf www/*
           cp ../index.html www/
           cp ../config.xml .
-          cordova build android --no-telemetry --device
+          cordova build android --no-telemetry --verbose
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: EggDash-APK
+          name: EggDash-Final-APK
           path: build_dir/platforms/android/app/build/outputs/apk/debug/app-debug.apk
